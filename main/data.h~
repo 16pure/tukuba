@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+using namespace cv;
+using namespace cv::xfeatures2d;
+using namespace std;
+
+int frameNo=0;//カウント用
+char str[255];//フレーム画像保存用
+Mat R_f= Mat::eye(3, 3, CV_64FC1);//回転合計
+Mat t_f= Mat::zeros(3, 1, CV_64FC1);//並進合計
+
+
+vector<float> latitudeGoal;//目標緯度（配列）
+vector<float> longitudeGoal;//目標経度（配列）
+float latitude;//現在緯度
+float* lat_Ptr=&latitude;//現在緯度のポインタ
+float longitude;//現在経度
+float* lon_Ptr=&longitude;//現在緯度のポインタ
+float latitude_goal;//目標緯度(単体)
+float* latGoal_Ptr=&latitude_goal;//現在緯度のポインタ
+float longitude_goal;//目標経度（単体）
+float* lonGoal_Ptr=&longitude_goal;//現在経度のポインタ
+float ramuda;//現在の角加速度
+float* ramuda_Ptr=&ramuda;//現在の角加速度のポインタ
+float ramuda0;//前の角加速度
+float* ramuda0_Ptr=&ramuda0;//前の角加速度のポインタ
+float h;//積分間隔
+float* h_Ptr=&h;//積分間隔のポインタ
+float scale;//変位
+float one_scale;//1周期ごとの変位
+float* one_scale_Ptr=&one_scale;//1周期ごとの変位のポインタ
+float V;//速度
+
+

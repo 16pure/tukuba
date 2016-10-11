@@ -1,0 +1,45 @@
+//#include "stdafx.h"
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <iostream>
+#include <math.h>
+#include "vo_features.h"
+#include "vo_features2.h"
+
+//PCL関連
+#include <pcl/io/pcd_io.h>
+#include <pcl/io/io.h>
+#include <pcl/point_types.h>
+#include <pcl/visualization/cloud_viewer.h>
+//
+
+
+using namespace std;
+using namespace cv;
+using namespace cv::xfeatures2d;
+
+int frameNo=0;
+
+int main()
+{
+	VideoCapture cap(0);
+	if(!cap.isOpened())//カメラデバイスが正常にオープンしたか確認．
+	{
+		//読み込みに失敗したときの処理
+		cout<<"読み込みエラー"<<endl;
+		return -1;
+	}
+	
+	Mat frame;
+	cap >> frame;
+
+	//フレーム画像を保存する．
+	cout<<"scale="<<scale<<endl;
+	sprintf(str,"/media/itolab/disk2/work/sasai/cv/3dworld/imagewrite/surf%04d.png",count++);
+        imwrite(str, frame);
+
+	sprintf(filename1, "/media/itolab/disk2/work/sasai/cv/3dworld/imagewrite/surf%04d.png",frameNo);
+	sprintf(filename2, "/media/itolab/disk2/work/sasai/cv/3dworld/imagewrite/surf%04d.png",frameNo+1);
+	frameNo=frameNo+1;
+
+}
